@@ -325,6 +325,7 @@ public:
  *          FromStr 从std::string转换成T类型的仿函数
  *          ToStr 从T转换成std::string的仿函数
  *          std::string 为YAML格式的字符串
+ * 继承 ConfigVarBase 基类的目的是 map 键值不能是模版类
  */
 template<class T, class FromStr = LexicalCast<std::string, T>
                 ,class ToStr = LexicalCast<T, std::string> >
@@ -463,6 +464,7 @@ private:
  */
 class Config {
 public:
+    //继承 ConfigVarBase 基类的目的是 map 键值不能是模版类
     typedef std::unordered_map<std::string, ConfigVarBase::ptr> ConfigVarMap;
     typedef RWMutex RWMutexType;
 
